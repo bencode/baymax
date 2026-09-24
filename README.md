@@ -6,6 +6,10 @@ Pólya ships composable primitives and a few rough seed skills. You grow the res
 
 > Status: early design. Not usable yet.
 
+## Your data stays yours
+
+Pólya runs on your own computer. Your files, notes, conversations and knowledge base never leave it, except for the parts of a conversation sent to the language model you use. If Pólya offers a hosted model service, that service forwards requests without storing them and records only token usage.
+
 ## Origin
 
 Pólya started as something I wanted to build for a friend, Anna, a university teacher working on electromagnetic fields and waves and 5G/6G communications: an assistant for her daily teaching and research. I soon realized I couldn't design her tools for her: only she knows how she works. So Pólya provides the building blocks, and she shapes the rest.

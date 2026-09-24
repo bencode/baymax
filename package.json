@@ -1,0 +1,26 @@
+{
+  "name": "polya",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.14.0",
+  "scripts": {
+    "dev:host": "pnpm --filter @polya/host dev",
+    "dev:web": "pnpm --filter @polya/web dev",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "lint": "biome check .",
+    "check": "biome check . && pnpm typecheck && pnpm test",
+    "build:release": "bun scripts/build-release.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.0",
+    "@types/bun": "^1.2.4",
+    "typescript": "^5.9.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "esbuild"
+    ]
+  }
+}

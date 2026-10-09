@@ -23,16 +23,16 @@ importers:
       '@earendil-works/pi-coding-agent':
         specifier: 0.87.1
         version: 0.87.1(ws@8.21.3)(zod@4.6.5)
-      '@polya/shared':
+      '@baymax/shared':
         specifier: workspace:*
         version: link:../../packages/shared
 
   host-packages/host:
     dependencies:
-      '@polya/core':
+      '@baymax/core':
         specifier: workspace:*
         version: link:../core
-      '@polya/shared':
+      '@baymax/shared':
         specifier: workspace:*
         version: link:../../packages/shared
       hono:
@@ -46,7 +46,7 @@ importers:
 
   ui-packages/web:
     dependencies:
-      '@polya/shared':
+      '@baymax/shared':
         specifier: workspace:*
         version: link:../../packages/shared
       react:

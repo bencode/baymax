@@ -21,11 +21,11 @@ const config = resolveConfig({
 // pi resolves some paths from this variable at import time, so set it before importing pi.
 process.env.PI_CODING_AGENT_DIR = config.agentDir
 
-const { createPolya } = await import('@polya/core')
+const { createBaymax } = await import('@baymax/core')
 const { createApp } = await import('./app.ts')
 
-const polya = await createPolya(config)
-const app = createApp(polya, isRelease ? releaseWebDir : undefined)
+const baymax = await createBaymax(config)
+const app = createApp(baymax, isRelease ? releaseWebDir : undefined)
 // Loopback only: the agent can read and write local files.
 const server = Bun.serve({
   hostname: '127.0.0.1',
@@ -34,7 +34,7 @@ const server = Bun.serve({
   idleTimeout: 0,
 })
 const url = `http://127.0.0.1:${server.port}`
-console.log(`Pólya on ${url} · project ${config.projectDir} · model ${polya.model ?? 'none'}`)
+console.log(`Baymax on ${url} · project ${config.projectDir} · model ${baymax.model ?? 'none'}`)
 
 if (isRelease) {
   const opener = { darwin: ['open'], win32: ['cmd', '/c', 'start', ''] }[process.platform as string]

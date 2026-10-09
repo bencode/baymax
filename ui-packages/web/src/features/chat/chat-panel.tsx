@@ -45,7 +45,7 @@ export const ChatPanel = () => {
         <input
           value={draft}
           onChange={e => setDraft(e.target.value)}
-          placeholder="Ask Pólya…"
+          placeholder="Ask Baymax…"
           className="w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-stone-500"
         />
       </form>

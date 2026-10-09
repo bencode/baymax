@@ -1,7 +1,7 @@
 // Pure configuration policy. Importing this module must not load pi (see host main.ts).
 import { join } from 'node:path'
 
-export type PolyaConfig = {
+export type BaymaxConfig = {
   home: string
   agentDir: string
   projectDir: string
@@ -21,7 +21,7 @@ export const toolsFor = (platform: NodeJS.Platform): string[] => [
 
 // Earlier paths win on skill name collisions: project > user > seed.
 export const skillPathsFor = (projectDir: string, home: string, seedDir: string): string[] => [
-  join(projectDir, '.polya', 'skills'),
+  join(projectDir, '.baymax', 'skills'),
   join(home, 'skills'),
   seedDir,
 ]

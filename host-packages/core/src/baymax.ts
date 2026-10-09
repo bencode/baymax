@@ -1,22 +1,22 @@
-import type { PolyaEvent } from '@polya/shared'
-import { createPolyaSession } from './agent.ts'
-import type { PolyaConfig } from './config.ts'
-import { toPolyaEvent } from './events.ts'
+import type { BaymaxEvent } from '@baymax/shared'
+import { createBaymaxSession } from './agent.ts'
+import type { BaymaxConfig } from './config.ts'
+import { toBaymaxEvent } from './events.ts'
 
-export type Polya = {
+export type Baymax = {
   model: string | undefined
   prompt: (text: string) => void
-  subscribe: (listener: (event: PolyaEvent) => void) => () => void
+  subscribe: (listener: (event: BaymaxEvent) => void) => () => void
 }
 
-export const createPolya = async (config: PolyaConfig): Promise<Polya> => {
-  const session = await createPolyaSession(config)
-  const listeners = new Set<(event: PolyaEvent) => void>()
-  const emit = (event: PolyaEvent) => {
+export const createBaymax = async (config: BaymaxConfig): Promise<Baymax> => {
+  const session = await createBaymaxSession(config)
+  const listeners = new Set<(event: BaymaxEvent) => void>()
+  const emit = (event: BaymaxEvent) => {
     for (const listener of listeners) listener(event)
   }
   session.subscribe(e => {
-    const event = toPolyaEvent(e)
+    const event = toBaymaxEvent(e)
     if (event) emit(event)
   })
 

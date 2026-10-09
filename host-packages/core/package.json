@@ -1,5 +1,5 @@
 {
-  "name": "@polya/core",
+  "name": "@baymax/core",
   "private": true,
   "type": "module",
   "exports": {
@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "@earendil-works/pi-coding-agent": "0.87.1",
-    "@polya/shared": "workspace:*"
+    "@baymax/shared": "workspace:*"
   }
 }

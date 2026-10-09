@@ -1,14 +1,14 @@
 # AGENTS.md
 
-Pólya: a self-growing, everyday agent assistant for researchers and educators, built on
+Baymax: a self-growing, everyday agent assistant for researchers and educators, built on
 [pi](https://github.com/earendil-works/pi). See README.md for the idea.
 
 ## Runtime model
 
-Pólya is a client application. Everything the user works with runs on the user's machine:
+Baymax is a client application. Everything the user works with runs on the user's machine:
 
 ```text
-polya[.exe]  (Bun, bun --compile)
+baymax[.exe]  (Bun, bun --compile)
   host   loopback HTTP + SSE, serves the web build, opens the browser   (thin)
   core   pi session, primitives (tools), skills, knowledge, projects     (everything else)
 browser (later: Tauri webview)  →  web
@@ -54,8 +54,8 @@ Package dependencies. Each set is complete; adding an edge is a deliberate act.
  :server #{}}   ; talks to the client over HTTP only
 ```
 
-`@polya/core/config` is pure and never loads pi: `host` imports it before setting
-`PI_CODING_AGENT_DIR`, then imports `@polya/core` dynamically.
+`@baymax/core/config` is pure and never loads pi: `host` imports it before setting
+`PI_CODING_AGENT_DIR`, then imports `@baymax/core` dynamically.
 
 Layers inside `web/src`:
 
@@ -71,7 +71,7 @@ Split a package out only when it gains a second consumer; merge it back when it 
 
 ```sh
 pnpm install
-pnpm dev:host        # host on http://127.0.0.1:41650  (args: [projectDir]; env: POLYA_MODEL=provider/id, POLYA_HOME, POLYA_PORT)
+pnpm dev:host        # host on http://127.0.0.1:41650  (args: [projectDir]; env: BAYMAX_MODEL=provider/id, BAYMAX_HOME, BAYMAX_PORT)
 pnpm dev:web         # web on http://localhost:41651  (/api proxied to the host)
 pnpm check           # biome + typecheck + tests
 pnpm build:release   # darwin-arm64 and windows-x64 builds under release/
@@ -83,8 +83,8 @@ Requires Bun ≥ 1.3 (pi uses `process.getBuiltinModule`).
 
 - Everything in this repository is written in English.
 - The host binds 127.0.0.1 only.
-- Data lives under `~/.polya` (`POLYA_HOME`); pi's own `~/.pi` is never touched.
-- Skills load in priority order: project `.polya/skills` > user `~/.polya/skills` > seed `skills/`.
+- Data lives under `~/.baymax` (`BAYMAX_HOME`); pi's own `~/.pi` is never touched.
+- Skills load in priority order: project `.baymax/skills` > user `~/.baymax/skills` > seed `skills/`.
 - Domain logic belongs in skills, never in primitives.
 - Internal packages export source (`"exports": { ".": "./src/index.ts" }`); only release builds compile.
 - Tests sit next to the code (`*.test.ts`) and check observable behavior.

@@ -1,2 +1,2 @@
-export type { PolyaConfig } from './config.ts'
-export { createPolya, type Polya } from './polya.ts'
+export { type Baymax, createBaymax } from './baymax.ts'
+export type { BaymaxConfig } from './config.ts'

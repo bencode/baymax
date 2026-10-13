@@ -1,4 +1,4 @@
-import type { PolyaEvent } from '@polya/shared'
+import type { BaymaxEvent } from '@baymax/shared'
 import { useEffect, useState } from 'react'
 
 export type ToolCall = { callId: string; name: string; status: 'running' | 'done' | 'failed' }
@@ -15,7 +15,7 @@ const updateAssistant = (
   return [...messages, update({ role: 'assistant', text: '', tools: [] })]
 }
 
-export const applyEvent = (messages: ChatMessage[], event: PolyaEvent): ChatMessage[] => {
+export const applyEvent = (messages: ChatMessage[], event: BaymaxEvent): ChatMessage[] => {
   if (event.type === 'text_delta') {
     return updateAssistant(messages, m => ({ ...m, text: m.text + event.delta }))
   }
@@ -44,7 +44,7 @@ export const useChat = () => {
     const source = new EventSource('/api/events')
     source.onmessage = e => {
       // Host and UI ship in one build, so the wire shape is trusted.
-      const event: PolyaEvent = JSON.parse(e.data)
+      const event: BaymaxEvent = JSON.parse(e.data)
       if (event.type === 'turn_end' || event.type === 'error') setBusy(false)
       setMessages(prev => applyEvent(prev, event))
     }

@@ -8,9 +8,9 @@ import {
   SessionManager,
   SettingsManager,
 } from '@earendil-works/pi-coding-agent'
-import type { PolyaConfig } from './config.ts'
+import type { BaymaxConfig } from './config.ts'
 
-export const createPolyaSession = async (config: PolyaConfig): Promise<AgentSession> => {
+export const createBaymaxSession = async (config: BaymaxConfig): Promise<AgentSession> => {
   const { agentDir, projectDir: cwd } = config
   const modelRuntime = await ModelRuntime.create({
     authPath: join(agentDir, 'auth.json'),

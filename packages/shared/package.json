@@ -1,5 +1,5 @@
 {
-  "name": "@polya/shared",
+  "name": "@baymax/shared",
   "private": true,
   "type": "module",
   "exports": {

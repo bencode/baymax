@@ -1,11 +1,11 @@
 {
-  "name": "polya",
+  "name": "baymax",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.14.0",
   "scripts": {
-    "dev:host": "pnpm --filter @polya/host dev",
-    "dev:web": "pnpm --filter @polya/web dev",
+    "dev:host": "pnpm --filter @baymax/host dev",
+    "dev:web": "pnpm --filter @baymax/web dev",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "lint": "biome check .",

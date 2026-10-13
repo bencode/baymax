@@ -1,5 +1,5 @@
 {
-  "name": "@polya/host",
+  "name": "@baymax/host",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,8 +8,8 @@
     "test": "true"
   },
   "dependencies": {
-    "@polya/core": "workspace:*",
-    "@polya/shared": "workspace:*",
+    "@baymax/core": "workspace:*",
+    "@baymax/shared": "workspace:*",
     "hono": "^4.9.0",
     "zod": "^4.1.0"
   }

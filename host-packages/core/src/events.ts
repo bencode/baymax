@@ -1,7 +1,7 @@
+import type { BaymaxEvent } from '@baymax/shared'
 import type { AgentSessionEvent } from '@earendil-works/pi-coding-agent'
-import type { PolyaEvent } from '@polya/shared'
 
-export const toPolyaEvent = (event: AgentSessionEvent): PolyaEvent | null => {
+export const toBaymaxEvent = (event: AgentSessionEvent): BaymaxEvent | null => {
   if (event.type === 'message_update') {
     const e = event.assistantMessageEvent
     if (e.type === 'text_delta') return { type: 'text_delta', delta: e.delta }

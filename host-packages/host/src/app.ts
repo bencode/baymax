@@ -1,5 +1,5 @@
-import type { Polya } from '@polya/core'
-import type { PolyaEvent, PromptRequest } from '@polya/shared'
+import type { Baymax } from '@baymax/core'
+import type { BaymaxEvent, PromptRequest } from '@baymax/shared'
 import { Hono } from 'hono'
 import { serveStatic } from 'hono/bun'
 import { streamSSE } from 'hono/streaming'
@@ -7,18 +7,18 @@ import { z } from 'zod'
 
 const promptRequest: z.ZodType<PromptRequest> = z.object({ text: z.string().min(1) })
 
-export const createApp = (polya: Polya, webDir?: string): Hono => {
+export const createApp = (baymax: Baymax, webDir?: string): Hono => {
   const api = new Hono()
     .post('/prompt', async c => {
       const parsed = promptRequest.safeParse(await c.req.json())
       if (!parsed.success) return c.json({ error: parsed.error.message }, 400)
-      polya.prompt(parsed.data.text)
+      baymax.prompt(parsed.data.text)
       return c.body(null, 202)
     })
     .get('/events', c =>
       streamSSE(c, async stream => {
-        const send = (event: PolyaEvent) => void stream.writeSSE({ data: JSON.stringify(event) })
-        const unsubscribe = polya.subscribe(send)
+        const send = (event: BaymaxEvent) => void stream.writeSSE({ data: JSON.stringify(event) })
+        const unsubscribe = baymax.subscribe(send)
         const keepalive = setInterval(
           () => void stream.writeSSE({ event: 'ping', data: '' }),
           30_000,
